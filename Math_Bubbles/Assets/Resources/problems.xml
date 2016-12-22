@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ItemCollection>
+  <Items>
+    <Item problemID="1">
+      <equation>"7*3"</equation>
+      <answer>"21"</answer>   
+    </Item>
+  </Items>
+</ItemCollection>
