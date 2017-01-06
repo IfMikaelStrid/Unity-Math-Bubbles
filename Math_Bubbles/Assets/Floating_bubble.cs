@@ -16,7 +16,7 @@ public class Floating_bubble : MonoBehaviour {
         tempPos.y = -5;
         tempVal = transform.position.x;
         
-        speed = Random.Range(0.0f,2.0f);
+        speed = Random.Range(0.0f,0.0f);
         rise_speed = Random.Range(0.005f, 0.05f);
         amplitude = Random.Range(0.0f,1.0f);
         scale = Random.Range(0.0f, 0.5f);

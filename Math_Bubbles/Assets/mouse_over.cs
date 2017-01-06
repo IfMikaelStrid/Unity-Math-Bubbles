@@ -4,9 +4,11 @@ using UnityEngine.SceneManagement;
 
 public class mouse_over : MonoBehaviour {
 
-    void OnMouseOver()
+    void OnMouseOver() //Change to voicecontrol
     {
-        SceneManager.LoadScene("math");
+		Object.DestroyObject(this.gameObject);
+
+		//SceneManager.LoadScene("math");
     }
 
 }

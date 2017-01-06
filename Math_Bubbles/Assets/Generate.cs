@@ -3,9 +3,11 @@ using System.Collections;
 
 
 public class Generate : MonoBehaviour {
-    public GameObject bubble;
-    const float range = 10.0f;
+	//public GameObject bubble;
+	//public GameObject clone;
+	const float range = 10.0f;
     private float InstantiationTimer = 1f;
+
 
     void Start () {
 
@@ -26,8 +28,13 @@ public class Generate : MonoBehaviour {
         if (InstantiationTimer <= 0)
         {
             randomPos.z = 0;
-            Instantiate(bubble, transform.position + randomPos, Quaternion.identity);
-            InstantiationTimer = 2f;
+		
+			GameObject clone = (GameObject) Instantiate (Resources.Load("Sphere"), transform.position + randomPos, Quaternion.identity);
+
+		    //clone.AddComponent (Tobii.EyeTracking.GazeAware);
+			//clone.AddComponent (ChangeColor);
+
+			InstantiationTimer = 4f;
         }
     }
 }
