@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using Tobii.EyeTracking;
+using System;
 
 /// <summary>
 /// Changes the color of the game object's material, when the the game object 
@@ -23,7 +24,8 @@ public class ChangeColor : MonoBehaviour {
 
 	public static int number;
 	public static int counter;
-	public bool activate; 
+	public bool activate;
+    public bool keywordset;
 
     /// <summary>
     /// Set the lerp color
@@ -54,13 +56,25 @@ public class ChangeColor : MonoBehaviour {
         if (_gazeAwareComponent.HasGazeFocus)
         {
             SetLerpColor(selectionColor);
-
-
-
+            setKeywordOnce();
         }
         else
         {
             SetLerpColor(_deselectionColor);
+        }
+    }
+
+    private void setKeywordOnce()
+    {
+        bool repress = recognition.truefalse;
+        if(keywordset)
+        {
+            recognition rec = new recognition();
+            rec.Start();
+            keywordset = false;
+        }
+        if(repress == true) {
+            keywordset = true;
         }
     }
 
@@ -71,13 +85,9 @@ public class ChangeColor : MonoBehaviour {
     public void SetLerpColor(Color lerpColor)
     {
         this._lerpColor = lerpColor;
-		if (activate == true) {
-			activatevoice ();
-		}
     }
-
+    /*
 	public void activatevoice(){
-		number = CreateNumbers.result;
 		bool truefalse = recognition();
 		Debug.Log (truefalse);
 		if (truefalse == true) {
@@ -88,5 +98,5 @@ public class ChangeColor : MonoBehaviour {
 		}
 		activate = false; 
 
-	}
+	}*/
 }

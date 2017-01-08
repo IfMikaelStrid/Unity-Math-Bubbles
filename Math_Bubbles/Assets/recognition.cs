@@ -16,7 +16,7 @@ public class recognition : MonoBehaviour
     {
         //ersätt Random.range() med det specifica "answer" int'en
 		truefalse = false; 
-		string correctNumber = NumberToWords(ChangeColor.number);
+		string correctNumber = NumberToWords(CreateNumbers.result);
         //debug check
         //print("The answer is: " + correctNumber);
 
@@ -40,12 +40,11 @@ public class recognition : MonoBehaviour
         }
     }
 
-    public static bool GoCalled()
+    void GoCalled()
     {
         //gör ngt när rätt svar finns.
         print("that is correct");
 		truefalse = true;
-		return truefalse;
     }
 
     public static string NumberToWords(int number)
