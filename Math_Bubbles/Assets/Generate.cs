@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 
 public class Generate : MonoBehaviour {
@@ -24,6 +25,7 @@ public class Generate : MonoBehaviour {
 		} 
 		else {
 			SceneManager.LoadScene("endscreen");
+
 		}
 	}
 

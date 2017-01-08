@@ -11,13 +11,13 @@ public class CreateNumbers : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		num1 = Random.Range (3, 9);
-		num2 = Random.Range (3, 9);
+		num1 = Random.Range (1, 9);
+		num2 = Random.Range (1, 9);
 		result = num1 * num2;
 
 		this.gameObject.GetComponentInChildren<Text> ().text = num1 + " * " + num2;
 		string t = this.gameObject.GetComponentInChildren<Text>().text;
-		Debug.Log (t);
+		//Debug.Log (t);
 	}
 	
 	// Update is called once per frame

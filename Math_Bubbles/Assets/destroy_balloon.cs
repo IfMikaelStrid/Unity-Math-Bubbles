@@ -4,10 +4,10 @@ using UnityEngine.SceneManagement;
 
 public class destroy_balloon : MonoBehaviour {
 
-	void Start() 
+	public void destroy() 
 
 	{
-		Object.DestroyObject(this.gameObject);
+		//gameObject.DestroyObject(this.gameObject);
 	}
 }
 

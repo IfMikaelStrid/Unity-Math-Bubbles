@@ -9,19 +9,24 @@ public class recognition : MonoBehaviour
 
     KeywordRecognizer keywordRecognizer;
     public int number;
-	public static bool truefalse;
-    Dictionary<string, System.Action> keywords = new Dictionary<string, System.Action>();
+	public static bool activatedestruction;
+	public static int count = 0;  
+	Dictionary<string, System.Action> keywords = new Dictionary<string, System.Action>();
 
     public void Start()
     {
-        //ersätt Random.range() med det specifica "answer" int'en
-		truefalse = false; 
-		string correctNumber = NumberToWords(CreateNumbers.result);
-        //debug check
-        //print("The answer is: " + correctNumber);
+        //ersätt Random.range() med det specifika "answer" int'en
+		string correctNumber = NumberToWords(ChangeColor.answer);
+		Debug.Log ("start");
 
-        keywords.Add(correctNumber, () =>
+		//Debug.Log (keywords.ToList();
+		keywords.Clear();
+		//keywords.Remove (correctNumber);
+		keywords.Add(correctNumber, () =>
         {
+			Debug.Log ("Done"); 
+			activatedestruction = false;
+
             GoCalled();
         });
 
@@ -43,12 +48,19 @@ public class recognition : MonoBehaviour
     void GoCalled()
     {
         //gör ngt när rätt svar finns.
-        print("that is correct");
-		truefalse = true;
+		print(ChangeColor.answer +" is correct");
+		keywords.Clear ();
+		activatedestruction = true;
+
+		GameObject.DestroyObject(ChangeColor.g);
+
+		count = count + 1; 
+
     }
 
     public static string NumberToWords(int number)
     {
+
         if (number == 0)
             return "zero";
 

@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using Tobii.EyeTracking;
 using System;
+using System.Collections;
+using UnityEngine.UI;
 
 /// <summary>
 /// Changes the color of the game object's material, when the the game object 
@@ -27,6 +29,12 @@ public class ChangeColor : MonoBehaviour {
 	public bool activate;
     public bool keywordset;
 
+	public static GameObject g;
+	public static int answer; 
+	public int answer2;
+	public static int first_entry;
+	public string txt;
+
     /// <summary>
     /// Set the lerp color
     /// </summary>
@@ -37,8 +45,9 @@ public class ChangeColor : MonoBehaviour {
         _lerpColor = _meshRenderer.material.color;
         _deselectionColor = Color.white;
 
-		counter = 0;
-		activate = true;
+		keywordset = true;
+		first_entry = 0; 
+
     }
 
     /// <summary>
@@ -46,6 +55,11 @@ public class ChangeColor : MonoBehaviour {
     /// </summary>
     void Update ()
     {
+
+		if (recognition.activatedestruction == true) { 
+			//GameObject.DestroyObject(this.gameObject);
+			recognition.activatedestruction = false;
+		}
 
         if (_meshRenderer.material.color != _lerpColor)
         {
@@ -55,26 +69,43 @@ public class ChangeColor : MonoBehaviour {
         // Change the color of the cube
         if (_gazeAwareComponent.HasGazeFocus)
         {
+			print (recognition.activatedestruction);
+
+			first_entry = first_entry + 1; 
             SetLerpColor(selectionColor);
-            setKeywordOnce();
+
+				g = this.gameObject;
+				//answer = CreateNumbers.result;
+				setKeywordOnce();
+
+			if (first_entry == 1) {
+				txt = this.gameObject.GetComponentInChildren<Text> ().text;
+				answer = int.Parse (txt.Substring (0, 1));
+				answer2 = int.Parse (txt.Substring (4, 1)); 
+				answer = answer * answer2; 
+				Debug.Log (answer);
+			}
+				          
         }
         else
         {
+			first_entry = 0; 
             SetLerpColor(_deselectionColor);
+			//Debug.Log (g.GetComponent<CreateNumbers>());
         }
     }
 
     private void setKeywordOnce()
     {
-        bool repress = recognition.truefalse;
-        if(keywordset)
+		
+       // bool repress = recognition.truefalse;
+		if(keywordset == true)
         {
-            recognition rec = new recognition();
+			keywordset = false;
+			recognition rec = new recognition();
             rec.Start();
-            keywordset = false;
-        }
-        if(repress == true) {
-            keywordset = true;
+
+
         }
     }
 
@@ -99,4 +130,6 @@ public class ChangeColor : MonoBehaviour {
 		activate = false; 
 
 	}*/
+
+
 }
