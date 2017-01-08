@@ -12,10 +12,10 @@ public class CreateNumbers : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		num1 = Random.Range (3, 9);
-		num2 = Random.Range (3, 8);
+		num2 = Random.Range (3, 9);
 		result = num1 * num2;
 
-		this.gameObject.GetComponentInChildren<Text> ().text = num1 + " + " + num2;
+		this.gameObject.GetComponentInChildren<Text> ().text = num1 + " * " + num2;
 		string t = this.gameObject.GetComponentInChildren<Text>().text;
 		Debug.Log (t);
 	}

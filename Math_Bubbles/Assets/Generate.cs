@@ -13,6 +13,7 @@ public class Generate : MonoBehaviour {
 
     void Start () {
 		i = 20; 
+		InstantiationTimer = 3f;
     }
 	
 
@@ -22,7 +23,7 @@ public class Generate : MonoBehaviour {
 			CreatePrefab ();
 		} 
 		else {
-			SceneManager.LoadScene("endScene");
+			SceneManager.LoadScene("endscreen");
 		}
 	}
 
@@ -38,12 +39,11 @@ public class Generate : MonoBehaviour {
 		if(InstantiationTimer <= 0)
 		{
             	
-			Debug.Log ("hej");
 			randomPos.z = 0;
 		
 			GameObject clone = (GameObject) Instantiate (Resources.Load("Sphere"), transform.position + randomPos, Quaternion.identity);
 
-			InstantiationTimer = 4f;
+			InstantiationTimer = 3f;
 	
 			i = i - 1;
 
