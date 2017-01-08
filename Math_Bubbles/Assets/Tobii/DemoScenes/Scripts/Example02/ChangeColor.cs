@@ -21,6 +21,10 @@ public class ChangeColor : MonoBehaviour {
     private Color           _lerpColor;
     private float           _fadeSpeed = 0.1f;
 
+	public static int number;
+	public static int counter;
+	public bool activate; 
+
     /// <summary>
     /// Set the lerp color
     /// </summary>
@@ -30,6 +34,9 @@ public class ChangeColor : MonoBehaviour {
         _meshRenderer = GetComponent<MeshRenderer>();
         _lerpColor = _meshRenderer.material.color;
         _deselectionColor = Color.white;
+
+		counter = 0;
+		activate = true;
     }
 
     /// <summary>
@@ -47,6 +54,9 @@ public class ChangeColor : MonoBehaviour {
         if (_gazeAwareComponent.HasGazeFocus)
         {
             SetLerpColor(selectionColor);
+
+
+
         }
         else
         {
@@ -61,5 +71,22 @@ public class ChangeColor : MonoBehaviour {
     public void SetLerpColor(Color lerpColor)
     {
         this._lerpColor = lerpColor;
+		if (activate == true) {
+			activatevoice ();
+		}
     }
+
+	public void activatevoice(){
+		number = CreateNumbers.result;
+		bool truefalse = recognition();
+		Debug.Log (truefalse);
+		if (truefalse == true) {
+			//Object.DestroyObject (this.gameObject);
+			counter = counter + 1; 
+
+			Debug.Log (counter);
+		}
+		activate = false; 
+
+	}
 }

@@ -7,7 +7,7 @@ public class CreateNumbers : MonoBehaviour {
 
 	public int num1;
 	public int num2;
-	public int result;
+	public static int result;
 
 	// Use this for initialization
 	void Start () {

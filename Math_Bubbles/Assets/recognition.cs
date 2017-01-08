@@ -9,12 +9,14 @@ public class recognition : MonoBehaviour
 
     KeywordRecognizer keywordRecognizer;
     public int number;
+	public static bool truefalse;
     Dictionary<string, System.Action> keywords = new Dictionary<string, System.Action>();
 
-    void Start()
+    public void Start()
     {
         //ersätt Random.range() med det specifica "answer" int'en
-        string correctNumber = NumberToWords(Random.Range(1, 65));
+		truefalse = false; 
+		string correctNumber = NumberToWords(ChangeColor.number);
         //debug check
         //print("The answer is: " + correctNumber);
 
@@ -38,10 +40,12 @@ public class recognition : MonoBehaviour
         }
     }
 
-    void GoCalled()
+    public static bool GoCalled()
     {
         //gör ngt när rätt svar finns.
         print("that is correct");
+		truefalse = true;
+		return truefalse;
     }
 
     public static string NumberToWords(int number)
@@ -92,4 +96,5 @@ public class recognition : MonoBehaviour
 
         return words;
     }
+
 }

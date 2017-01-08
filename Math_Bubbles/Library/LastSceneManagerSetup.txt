@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/instructionscreen.unity
+- path: Assets/bubbles.unity
   isLoaded: 1
   isActive: 1

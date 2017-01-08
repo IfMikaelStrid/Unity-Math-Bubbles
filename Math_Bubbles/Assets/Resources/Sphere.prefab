@@ -78,7 +78,7 @@ Transform:
   m_GameObject: {fileID: 1862837915034312}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.24, y: -5, z: 0}
-  m_LocalScale: {x: 2.5153325, y: 3, z: 3}
+  m_LocalScale: {x: 2.710983, y: 3.1956506, z: 3}
   m_Children:
   - {fileID: 224525634791722334}
   m_Father: {fileID: 0}
@@ -217,7 +217,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 4 * 7
+  m_Text: 8 * 3
 --- !u!114 &114363174401722036
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -229,9 +229,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58440091b258b6c45806acc0e8dffcaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  num1: 0
-  num2: 0
-  result: 0
+  num1: 8
+  num2: 3
 --- !u!114 &114404367519734606
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -255,6 +254,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectionColor: {r: 0, g: 0, b: 0, a: 0}
+  activate: 0
 --- !u!114 &114654196726483026
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -266,10 +266,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64254fc8200f6c7458ac4176e0f2e7fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  amplitude: 0
+  amplitude: 0.6056623
   speed: 0
-  rise_speed: 0
-  scale: 0
+  rise_speed: 0.02
+  scale: 0.19565067
   particle: {fileID: 0}
 --- !u!135 &135139968473044222
 SphereCollider:
