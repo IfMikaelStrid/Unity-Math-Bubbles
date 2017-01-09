@@ -53,6 +53,9 @@ public class recognition : MonoBehaviour
 		correctNumber = NumberToWords(ChangeColor.answer); 
         System.Action keywordAction;
 
+		Debug.Log ("I heard: " + args.text);
+		Debug.Log ("Correct is: " + correctNumber);
+
 		if (keywords.TryGetValue (args.text, out keywordAction)) {
 			Debug.Log ("complete");
 			if (args.text == correctNumber) {
@@ -76,7 +79,7 @@ public class recognition : MonoBehaviour
 
 		GameObject.DestroyObject(ChangeColor.g);
 
-		count = count + 1; 
+		count += 1; 
 
 
     }
@@ -127,7 +130,7 @@ public class recognition : MonoBehaviour
             {
                 words += tensMap[number / 10];
                 if ((number % 10) > 0)
-                    words += unitsMap[number % 10];
+                    words += "-" + unitsMap[number % 10];
             }
         }
 

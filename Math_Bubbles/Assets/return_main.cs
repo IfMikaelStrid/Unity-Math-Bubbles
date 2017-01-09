@@ -19,6 +19,7 @@ public class return_main : MonoBehaviour {
 
 	void OnMouseDown() //Change to voicecontrol
 	{
+		recognition.count = 0;
 		SceneManager.LoadScene("startscreen");
 	}
 

@@ -85,7 +85,7 @@ public class ChangeColor : MonoBehaviour {
 				answer = int.Parse (txt.Substring (0, 1));
 				answer2 = int.Parse (txt.Substring (4, 1)); 
 				answer = answer * answer2; 
-				Debug.Log (answer);
+				//Debug.Log (answer);
 			}
 				          
         }
