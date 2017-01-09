@@ -14,12 +14,15 @@ public class recognition : MonoBehaviour
 	public static int count = 0;  
 	public static Dictionary<string, System.Action> keywords = new Dictionary<string, System.Action>();
 	public static int first_entry = 0;
-	public bool complete; 
+	public bool complete, popBool;
+    public AudioClip pop = new AudioClip();
+    AudioSource mySound = new AudioSource();
 
-	public void Start()
+    public void Start()
 	{
+        popBool = true;
 
-		if (first_entry == 0) { 
+        if (first_entry == 0) { 
 			//ersätt Random.range() med det specifika "answer" int'en
 
 			//Debug.Log (keywords.ToList();
@@ -79,7 +82,14 @@ public class recognition : MonoBehaviour
 
 		GameObject.DestroyObject(ChangeColor.g);
 
-		count += 1; 
+        if (popBool)
+        {
+            mySound = GetComponent<AudioSource>();
+            mySound.PlayOneShot(pop, 0.8f);
+            popBool = false;
+        }
+
+        count += 1; 
 
 
     }

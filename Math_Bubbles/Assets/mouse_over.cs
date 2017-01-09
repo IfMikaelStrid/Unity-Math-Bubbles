@@ -2,12 +2,13 @@
 using System.Collections;
 using UnityEngine.SceneManagement;
 
+
+
 public class mouse_over : MonoBehaviour {
 
-    void OnMouseOver() //Change to voicecontrol
+    void OnMouseOver()
     {
 
-		//SceneManager.LoadScene("math");
     }
 
 }
