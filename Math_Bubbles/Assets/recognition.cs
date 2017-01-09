@@ -7,67 +7,92 @@ using System.Linq;
 public class recognition : MonoBehaviour
 {
 
-    KeywordRecognizer keywordRecognizer;
-    public int number;
+    public static KeywordRecognizer keywordRecognizer;
+	public int number;
+	public static string correctNumber;
 	public static bool activatedestruction;
 	public static int count = 0;  
-	Dictionary<string, System.Action> keywords = new Dictionary<string, System.Action>();
+	public static Dictionary<string, System.Action> keywords = new Dictionary<string, System.Action>();
+	public static int first_entry = 0;
+	public bool complete; 
 
-    public void Start()
-    {
-        //ersätt Random.range() med det specifika "answer" int'en
-		string correctNumber = NumberToWords(ChangeColor.answer);
-		Debug.Log ("start");
+	public void Start()
+	{
 
-		//Debug.Log (keywords.ToList();
-		keywords.Clear();
-		//keywords.Remove (correctNumber);
-		keywords.Add(correctNumber, () =>
-        {
-			Debug.Log ("Done"); 
-			activatedestruction = false;
+		if (first_entry == 0) { 
+			//ersätt Random.range() med det specifika "answer" int'en
 
-            GoCalled();
-        });
+			//Debug.Log (keywords.ToList();
+			//keywords.Clear();
+			//keywords.Remove (correctNumber);
+			for (int i = 0; i <= 100; i++) {
+				string parsedNumber = NumberToWords (i);
+				keywords.Add (parsedNumber, () => {
+					Debug.Log ("Done"); 
+					GoCalled ();
 
-        keywordRecognizer = new KeywordRecognizer(keywords.Keys.ToArray());
-        keywordRecognizer.OnPhraseRecognized += keywordRecognizerOnphraseRecognized;
-        keywordRecognizer.Start();
-    }
+				});
+			}
+			keywordRecognizer = new KeywordRecognizer (keywords.Keys.ToArray ());
+			keywordRecognizer.OnPhraseRecognized += keywordRecognizerOnphraseRecognized;
+			keywordRecognizer.Start ();
+		}
+
+
+
+		//if (ChangeColor.first_entry == 0) {
+		//	keywordRecognizer.Stop ();
+		//}
+
+		first_entry = first_entry + 1;
+
+	}
 
     void keywordRecognizerOnphraseRecognized(PhraseRecognizedEventArgs args)
     {
+		correctNumber = NumberToWords(ChangeColor.answer); 
         System.Action keywordAction;
 
-        if (keywords.TryGetValue(args.text, out keywordAction))
-        {
-            keywordAction.Invoke();
-        }
+		if (keywords.TryGetValue (args.text, out keywordAction)) {
+			Debug.Log ("complete");
+			if (args.text == correctNumber) {
+
+				//activatedestruction = false;
+				keywordAction.Invoke ();
+
+			} else {
+				Debug.Log ("wrong answer");
+			}
+		} else {
+			Debug.Log("Word not recognized");
+		}
     }
 
     void GoCalled()
     {
         //gör ngt när rätt svar finns.
 		print(ChangeColor.answer +" is correct");
-		keywords.Clear ();
 		activatedestruction = true;
 
 		GameObject.DestroyObject(ChangeColor.g);
 
 		count = count + 1; 
 
+
     }
 
     public static string NumberToWords(int number)
     {
 
-        if (number == 0)
-            return "zero";
+		string words = "";
 
+		if (number == 0) {
+			return "zero";
+		}
+
+		/*
         if (number < 0)
             return "minus " + NumberToWords(System.Math.Abs(number));
-
-        string words = "";
 
         if ((number / 1000000) > 0)
         {
@@ -80,12 +105,13 @@ public class recognition : MonoBehaviour
             words += NumberToWords(number / 1000) + " thousand ";
             number %= 1000;
         }
-
+		*/
         if ((number / 100) > 0)
         {
             words += NumberToWords(number / 100) + " hundred ";
             number %= 100;
         }
+		
 
         if (number > 0)
         {
@@ -101,11 +127,15 @@ public class recognition : MonoBehaviour
             {
                 words += tensMap[number / 10];
                 if ((number % 10) > 0)
-                    words += "-" + unitsMap[number % 10];
+                    words += unitsMap[number % 10];
             }
         }
 
         return words;
     }
+
+	public static void StopKeywordRecognizer(){
+		//keywordRecognizer.Stop();
+	}
 
 }

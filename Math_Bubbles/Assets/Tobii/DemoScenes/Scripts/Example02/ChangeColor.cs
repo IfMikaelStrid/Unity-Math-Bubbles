@@ -3,6 +3,8 @@ using Tobii.EyeTracking;
 using System;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.Windows.Speech;
+using System.Linq;
 
 /// <summary>
 /// Changes the color of the game object's material, when the the game object 
@@ -69,7 +71,7 @@ public class ChangeColor : MonoBehaviour {
         // Change the color of the cube
         if (_gazeAwareComponent.HasGazeFocus)
         {
-			print (recognition.activatedestruction);
+			//print (recognition.activatedestruction);
 
 			first_entry = first_entry + 1; 
             SetLerpColor(selectionColor);
@@ -91,7 +93,9 @@ public class ChangeColor : MonoBehaviour {
         {
 			first_entry = 0; 
             SetLerpColor(_deselectionColor);
+			//recognition.StopKeywordRecognizer();
 			//Debug.Log (g.GetComponent<CreateNumbers>());
+			//KeywordRecognizer k = recognition.keywordRecognizer.Stop();
         }
     }
 
@@ -103,9 +107,7 @@ public class ChangeColor : MonoBehaviour {
         {
 			keywordset = false;
 			recognition rec = new recognition();
-            rec.Start();
-
-
+			rec.Start();
         }
     }
 

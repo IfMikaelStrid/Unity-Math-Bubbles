@@ -10,11 +10,11 @@ public class Generate : MonoBehaviour {
 	const float range = 10.0f;
     private float InstantiationTimer = 1f;
 	public int i; 
+	private float timer = 8f;
 
 
     void Start () {
 		i = 20; 
-		InstantiationTimer = 3f;
     }
 	
 
@@ -24,8 +24,10 @@ public class Generate : MonoBehaviour {
 			CreatePrefab ();
 		} 
 		else {
-			SceneManager.LoadScene("endscreen");
-
+			timer -= Time.deltaTime;
+			if (timer <= 0) {
+				SceneManager.LoadScene ("endscreen");
+			}
 		}
 	}
 
